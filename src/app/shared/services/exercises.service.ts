@@ -14,4 +14,8 @@ export class ExercisesService {
   public getExercises(): Observable<Exercise[]> {
     return this.http.get<Exercise[]>(environment.apiUrl + 'exercises');
   }
+
+  public createExercise(datasToSend: FormData): Observable<any> {
+    return this.http.post(environment.apiUrl + 'exercise/create', datasToSend);
+  }
 }
