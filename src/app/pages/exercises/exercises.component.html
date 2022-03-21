@@ -1,13 +1,16 @@
-<div class="container">
-    <div class="row mb-4 mt-5">
-        <div class="d-flex align-items-center justify-content-between">
-            <h1>Exercices</h1>
-            <a routerLink="/exercice/creation"><button class="addNewExerciseButton">
-                Ajouter
-            </button></a>
+<div class="container-fluid p-0 d-flex justify-content-between">
+    <app-menu class="sideMenu"></app-menu>
+    <div class="container col-12 col-md-8">
+        <div class="row mb-4 mt-5">
+            <div class="d-flex align-items-center justify-content-between">
+                <h1>Exercices</h1>
+                <a routerLink="/exercice/creation"><button class="addNewExerciseButton">
+                        Ajouter
+                    </button></a>
+            </div>
         </div>
-    </div>
-    <div>
-        <app-exercise-card class="d-flex flex-wrap" [exercises]="exercises"></app-exercise-card>
+        <div>
+            <app-exercise-card class="d-flex flex-wrap mb-5" [exercises]="exercises"></app-exercise-card>
+        </div>
     </div>
 </div>

@@ -15,7 +15,19 @@ export class ExercisesService {
     return this.http.get<Exercise[]>(environment.apiUrl + 'exercises');
   }
 
+  public getExerciseById(id: number): Observable<Exercise> {
+    return this.http.get<Exercise>(environment.apiUrl + 'exercise/' + id);
+  }
+
   public createExercise(datasToSend: FormData): Observable<any> {
     return this.http.post(environment.apiUrl + 'exercise/create', datasToSend);
+  }
+
+  public modifyExercise(id: number, datasToSend: FormData): Observable<any> {
+    return this.http.patch(environment.apiUrl + 'exercise/' + id + '/modify', datasToSend);
+  }
+
+  public deleteExercise(id: number): Observable<any> {
+    return this.http.delete(environment.apiUrl + 'exercise/' + id + '/delete');
   }
 }

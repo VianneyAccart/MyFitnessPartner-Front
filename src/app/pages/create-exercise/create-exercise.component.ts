@@ -46,7 +46,7 @@ export class CreateExerciseComponent {
     });
   }
 
-  onSubmit(): void {
+  createExercise(): void {
     const datasToSend: FormData = new FormData();
     datasToSend.append(
       'muscularGroupId',
