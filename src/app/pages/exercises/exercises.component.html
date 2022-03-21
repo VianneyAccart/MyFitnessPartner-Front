@@ -1,1 +1,13 @@
-<p>exercises works!</p>
+<div class="container">
+    <div class="row mb-4 mt-5">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>Exercices</h1>
+            <button class="addNewExerciseButton">
+                Ajouter
+            </button>
+        </div>
+    </div>
+    <div>
+        <app-exercise-card class="d-flex flex-wrap" [exercises]="exercises"></app-exercise-card>
+    </div>
+</div>
