@@ -26,7 +26,7 @@ export class CreateExerciseComponent {
         this.muscularGroups = response;
       });
     this.addExerciseForm = this.formBuilder.group({
-      muscularGroup: ['', Validators.required],
+      muscularGroup: ['Groupe musculaire', Validators.required],
       name: [
         '',
         [
@@ -46,7 +46,7 @@ export class CreateExerciseComponent {
     });
   }
 
-  onSubmit(): void {
+  createExercise(): void {
     const datasToSend: FormData = new FormData();
     datasToSend.append(
       'muscularGroupId',

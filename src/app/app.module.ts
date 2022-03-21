@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ExerciseCardComponent } from './components/exercise-card/exercise-card.component';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModifyExerciseComponent,
     NotFoundComponent,
     ExerciseCardComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
