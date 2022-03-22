@@ -1,0 +1,19 @@
+<div class="container-fluid p-0 d-flex justify-content-between">
+    <app-menu class="sideMenu"></app-menu>
+    <div class="container content col-12 col-md-6 col-lg-5">
+        <div class="row mb-4 mt-5">
+            <h1>Ajout d'un groupe musculaire</h1>
+        </div>
+        <form (ngSubmit)="muscularGroupForm.valid && modifyMuscularGroup()" [formGroup]="addMuscularGroupForm" #muscularGroupForm="ngForm">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput"
+                    formControlName="name" placeholder="Biceps"
+                    [ngClass]="{'is-invalid' : muscularGroupForm.submitted && addMuscularGroupForm.get('name')?.errors}">
+                <label for="floatingInput">Nom du groupe musculaire</label>
+            </div>
+            <button class="submitButton mb-2" type="submit">Enregistrer</button>
+        </form>
+        <a routerLink="/groupes-musculaires"><button class="mb-2">Annuler</button></a>
+        <button (click)="deleteMuscularGroupById()" class="deleteButton">Supprimer ce groupe musculaire</button>
+    </div>
+</div>

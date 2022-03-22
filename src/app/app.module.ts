@@ -7,10 +7,12 @@ import { CreateExerciseComponent } from './pages/create-exercise/create-exercise
 import { ModifyExerciseComponent } from './pages/modify-exercise/modify-exercise.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ExerciseCardComponent } from './components/exercise-card/exercise-card.component';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
+import { MuscularGroupsComponent } from './pages/muscular-groups/muscular-groups.component';
+import { CreateMuscularGroupComponent } from './pages/create-muscular-group/create-muscular-group.component';
+import { ModifyMuscularGroupComponent } from './pages/modify-muscular-group/modify-muscular-group.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,10 @@ import { MenuComponent } from './components/menu/menu.component';
     CreateExerciseComponent,
     ModifyExerciseComponent,
     NotFoundComponent,
-    ExerciseCardComponent,
     MenuComponent,
+    MuscularGroupsComponent,
+    CreateMuscularGroupComponent,
+    ModifyMuscularGroupComponent,
   ],
   imports: [
     BrowserModule,
