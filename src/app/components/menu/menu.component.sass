@@ -1,6 +1,6 @@
 .sideMenu
     background-color: #EDF1F4
-    width: 250px
+    width: 320px
     padding: 50px 0 0
     height: auto
     min-height: 100vh
@@ -13,11 +13,26 @@ a
 
 .item
     height: 50px
+    border-bottom: 1px solid #e2e6e9
 
-.item:hover
+.item:first-child
+    border-top: 1px solid #e2e6e9
+
+.item:hover, .subMenu:hover
     background-color: #e2e6e9
     cursor: pointer
     color: #5C60F4
+
+.subMenu
+    padding-left: 50px
+    font-weight: 300
+
+.bi
+    color: #5C60F4
+    padding: 0 10px 0 0px
+
+.bi-chevron-down
+    padding-left: 10px
 
 @media screen and (max-width: 768px)
     .sideMenu

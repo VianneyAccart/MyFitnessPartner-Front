@@ -1,7 +1,7 @@
 <div class="container-fluid p-0 d-flex justify-content-between">
     <app-menu class="sideMenu"></app-menu>
     <div class="container col-12 col-md-8">
-        <div class="row mb-4 mt-5">
+        <div class="row mb-5 mt-5">
             <div class="d-flex align-items-center justify-content-between">
                 <h1>Exercices</h1>
                 <a routerLink="/exercice/creation"><button class="addNewExerciseButton">
@@ -9,8 +9,24 @@
                     </button></a>
             </div>
         </div>
-        <div>
-            <app-exercise-card class="d-flex flex-wrap mb-5" [exercises]="exercises"></app-exercise-card>
-        </div>
+
+        <table class="w-100">
+            <!-- Head of the table -->
+            <tr class="tableHead">
+                <th class="headElement col-7">Nom<i (click)="sortByName()" class="bi bi-arrow-down-up"></i></th>
+                <th class="headElement col-3">Groupe<i (click)="sortByMuscularGroup()" class="bi bi-arrow-down-up"></i>
+                </th>
+                <th class="col-2 text-center"></th>
+            </tr>
+
+            <!-- Content of the table -->
+            <tr class="tableContent" *ngFor="let exercise of exercises; let i = index">
+                <td class="col-7">{{ exercise.name }}</td>
+                <td class="col-3">{{ exercise.muscularGroup.name }}</td>
+                <td class="col-2 text-center">
+                    <i routerLink="/exercice/{{exercise.id}}/modification" class="bi bi-pencil-fill pointer"></i>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

@@ -1,7 +1,0 @@
-<div *ngFor="let exercise of exercises" class="outer col-12 col-md-6">
-    <div routerLink="/exercice/{{exercise.id}}/modification" class="inner d-flex flex-column justify-content-center">
-        <p class="title">{{exercise.name.length > 70 ? (exercise.name | slice: 0:70) + '...' : exercise.name}}</p>
-        <p class="muscularGroup">{{exercise.muscularGroup.name}}</p>
-        <p class="date">Ajouté le {{exercise.creationDate | date: 'dd/MM/yyyy'}}</p>
-    </div>
-</div>

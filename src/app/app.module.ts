@@ -7,7 +7,6 @@ import { CreateExerciseComponent } from './pages/create-exercise/create-exercise
 import { ModifyExerciseComponent } from './pages/modify-exercise/modify-exercise.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ExerciseCardComponent } from './components/exercise-card/exercise-card.component';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
@@ -20,7 +19,6 @@ import { MenuComponent } from './components/menu/menu.component';
     CreateExerciseComponent,
     ModifyExerciseComponent,
     NotFoundComponent,
-    ExerciseCardComponent,
     MenuComponent,
   ],
   imports: [
