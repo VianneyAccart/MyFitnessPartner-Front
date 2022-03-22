@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
+import { MuscularGroupsComponent } from './pages/muscular-groups/muscular-groups.component';
+import { CreateMuscularGroupComponent } from './pages/create-muscular-group/create-muscular-group.component';
+import { ModifyMuscularGroupComponent } from './pages/modify-muscular-group/modify-muscular-group.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { MenuComponent } from './components/menu/menu.component';
     ModifyExerciseComponent,
     NotFoundComponent,
     MenuComponent,
+    MuscularGroupsComponent,
+    CreateMuscularGroupComponent,
+    ModifyMuscularGroupComponent,
   ],
   imports: [
     BrowserModule,

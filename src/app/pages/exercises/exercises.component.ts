@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Exercise } from 'src/app/shared/models/Exercise.model';
 import { ExercisesService } from 'src/app/shared/services/exercises.service';
@@ -8,10 +8,11 @@ import { ExercisesService } from 'src/app/shared/services/exercises.service';
   templateUrl: './exercises.component.html',
   styleUrls: ['./exercises.component.sass'],
 })
-export class ExercisesComponent {
+export class ExercisesComponent implements OnInit {
   exercises: Exercise[] | undefined;
   sortByAscendingName: boolean;
   sortByAscendingMuscularGroup: boolean;
+  alertIsShown: boolean;
 
   constructor(private exercisesService: ExercisesService) {
     this.exercisesService.getExercises().subscribe((response: Exercise[]) => {
@@ -19,6 +20,16 @@ export class ExercisesComponent {
     });
     this.sortByAscendingName = true;
     this.sortByAscendingMuscularGroup = true;
+    this.alertIsShown = false;
+  }
+
+  ngOnInit(): void {
+    if (window.sessionStorage.getItem('success') == 'exercise')
+      this.alertIsShown = true;
+    window.setTimeout(() => {
+      this.alertIsShown = false;
+    }, 3000);
+    window.sessionStorage.removeItem("success");
   }
 
   sortByName() {

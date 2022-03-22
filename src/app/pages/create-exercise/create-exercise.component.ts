@@ -63,7 +63,8 @@ export class CreateExerciseComponent {
         console.log(response);
       },
       (error) => {
-        if (error.status == 200) this.router.navigate(['/']);
+        window.sessionStorage.setItem("success", "exercise");
+        if (error.status == 200) this.router.navigate(['/exercices']);
       }
     );
   }

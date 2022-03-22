@@ -53,7 +53,6 @@ export class ModifyExerciseComponent implements OnInit {
       this.exercisesService
         .getExerciseById(params['id'])
         .subscribe((response) => {
-          console.log(response.muscularGroup.name);
           this.addExerciseForm = this.formBuilder.group({
             muscularGroup: [response.muscularGroup.id, Validators.required],
             name: [
@@ -95,7 +94,8 @@ export class ModifyExerciseComponent implements OnInit {
           console.log(response);
         },
         (error) => {
-          if (error.status == 200) this.router.navigate(['/']);
+          window.sessionStorage.setItem("success", "exercise");
+          if (error.status == 200) this.router.navigate(['/exercices']);
         }
       );
     });
@@ -108,7 +108,8 @@ export class ModifyExerciseComponent implements OnInit {
           console.log(response);
         },
         (error) => {
-          if (error.status == 200) this.router.navigate(['/']);
+          window.sessionStorage.setItem("success", "exercise");
+          if (error.status == 200) this.router.navigate(['/exercices']);
         }
       );
     });
