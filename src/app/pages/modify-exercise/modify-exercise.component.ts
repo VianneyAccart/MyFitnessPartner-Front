@@ -28,7 +28,7 @@ export class ModifyExerciseComponent implements OnInit {
       });
 
     this.addExerciseForm = this.formBuilder.group({
-      muscularGroup: ['Groupe musculaire', Validators.required],
+      muscularGroup: ['', Validators.required],
       name: [
         '',
         [
@@ -55,7 +55,7 @@ export class ModifyExerciseComponent implements OnInit {
         .subscribe((response) => {
           console.log(response.muscularGroup.name);
           this.addExerciseForm = this.formBuilder.group({
-            muscularGroup: [response.muscularGroup.name, Validators.required],
+            muscularGroup: [response.muscularGroup.id, Validators.required],
             name: [
               response.name,
               [
