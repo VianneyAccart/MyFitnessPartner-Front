@@ -1,3 +1,11 @@
-<nav class="container-fluid navbar">
-    <p>My<span>Fitness</span>Partner</p>
+<nav class="container-fluid navbar d-flex justify-content-between">
+    <p class="title">My<span>Fitness</span>Partner</p>
+    <div [ngClass]="{'active' : openedMobileMenu === true}" (click)="toggleMobileMenu()" class="menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
 </nav>
+<div class="mobileMenu" *ngIf="openedMobileMenu">
+    <app-menu (openedMobileMenu)="closeMobileMenu($event)"></app-menu>
+</div>
