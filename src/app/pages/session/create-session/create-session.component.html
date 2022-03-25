@@ -1,0 +1,22 @@
+<div class="container-fluid p-0 d-flex justify-content-between">
+    <app-menu class="sideMenu"></app-menu>
+    <div class="container content col-12 col-md-6 col-lg-5">
+        <div class="row mb-4 mt-5">
+            <h1>Ajout d'une séance</h1>
+        </div>
+        <form [formGroup]="sessionForm">
+            <input type="text" formControlName="title">
+            <input type="date" formControlName="date">
+            <input type="number" formControlName="feeling">
+            <div formArrayName="exercises" *ngFor="let item of sessionForm.controls['exercises'].value; let i = index;">
+                <div [formGroupName]="i">
+                    <h3 class="mt-4">Exercice {{i+1}}</h3>
+                    <input formControlName="name" placeholder="Exercice">
+                    <input formControlName="muscularGroup" placeholder="Groupe musculaire">
+                </div>
+            </div>
+            <button type="button" (click)="addExercise()">Ajouter un exercice</button>
+        </form>
+        <a routerLink="/exercices"><button>Annuler</button></a>
+    </div>
+</div>

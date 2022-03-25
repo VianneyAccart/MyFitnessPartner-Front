@@ -13,6 +13,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MuscularGroupsComponent } from './pages/muscular-group/muscular-groups/muscular-groups.component';
 import { CreateMuscularGroupComponent } from './pages/muscular-group/create-muscular-group/create-muscular-group.component';
 import { ModifyMuscularGroupComponent } from './pages/muscular-group/modify-muscular-group/modify-muscular-group.component';
+import { CreateSessionComponent } from './pages/session/create-session/create-session.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ModifyMuscularGroupComponent } from './pages/muscular-group/modify-musc
     MuscularGroupsComponent,
     CreateMuscularGroupComponent,
     ModifyMuscularGroupComponent,
+    CreateSessionComponent,
   ],
   imports: [
     BrowserModule,
