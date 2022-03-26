@@ -3,10 +3,16 @@
     <div class="container content col-12 col-md-6 col-lg-5">
         <div class="row mb-4 mt-5">
             <div class="d-flex justify-content-around align-items-center mb-5">
-                <div class="step"><p>1</p></div>
-                <div><hr></div>
+                <div class="step">
+                    <p>1</p>
+                </div>
+                <div>
+                    <hr>
+                </div>
                 <div class="step current">2</div>
-                <div><hr></div>
+                <div>
+                    <hr>
+                </div>
                 <div class="step">3</div>
             </div>
             <h1>Ajout d'un exercice</h1>
@@ -37,23 +43,24 @@
                     <label for="floatingSelect">Exercice</label>
                 </div>
 
-                <div formArrayName="series" *ngFor="let item of exerciseForm.controls['series'].value; let i = index;"
-                    class="row g-2 mb-3">
-                    <div class="serieCount col-2 d-flex align-items-center">
-                        <p>Série {{i+1}}</p>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-floating">
-                            <input type="number" min="1" class="form-control" value="" id="floatingInput"
-                                placeholder="10">
-                            <label for="floatingInput">Répétitions</label>
+                <div formArrayName="series" *ngFor="let item of exerciseForm.controls['series'].value; let i = index;">
+                    <div [formGroup]="serieForm" class="row g-2 mb-3">
+                        <div class="serieCount col-2 d-flex align-items-center">
+                            <p>Série {{i+1}}</p>
                         </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-floating">
-                            <input type="number" min="0" step="0.25" class="form-control" id="floatingInput" value=""
-                                placeholder="45">
-                            <label for="floatingInput">Charge (kg)</label>
+                        <div class="col-5">
+                            <div class="form-floating">
+                                <input formControlName="repetitions" type="number" min="1" class="form-control" value=""
+                                    id="floatingInput" placeholder="10">
+                                <label for="floatingInput">Répétitions</label>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-floating">
+                                <input formControlName="weight" type="number" min="0" step="0.25" class="form-control"
+                                    id="floatingInput" value="" placeholder="45">
+                                <label for="floatingInput">Charge (kg)</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,7 +70,7 @@
                         <button class="newExercise" (click)="setExerciseInLocalStorage()">Ajouter un exercice</button>
                     </div>
                     <div class="col-sm-6">
-                        <button class="endSession">Terminer la séance</button>
+                        <button class="endSession" (click)="getValuesForEachSerie()">Terminer la séance</button>
                     </div>
                 </div>
 
