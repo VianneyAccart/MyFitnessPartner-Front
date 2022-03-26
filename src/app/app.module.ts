@@ -14,6 +14,7 @@ import { MuscularGroupsComponent } from './pages/muscular-group/muscular-groups/
 import { CreateMuscularGroupComponent } from './pages/muscular-group/create-muscular-group/create-muscular-group.component';
 import { ModifyMuscularGroupComponent } from './pages/muscular-group/modify-muscular-group/modify-muscular-group.component';
 import { CreateSessionComponent } from './pages/session/create-session/create-session.component';
+import { AddExerciseInSessionComponent } from './pages/session/add-exercise-in-session/add-exercise-in-session.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreateSessionComponent } from './pages/session/create-session/create-se
     CreateMuscularGroupComponent,
     ModifyMuscularGroupComponent,
     CreateSessionComponent,
+    AddExerciseInSessionComponent,
   ],
   imports: [
     BrowserModule,

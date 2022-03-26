@@ -8,6 +8,7 @@ import { ModifyMuscularGroupComponent } from './pages/muscular-group/modify-musc
 import { MuscularGroupsComponent } from './pages/muscular-group/muscular-groups/muscular-groups.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CreateSessionComponent } from './pages/session/create-session/create-session.component';
+import { AddExerciseInSessionComponent } from './pages/session/add-exercise-in-session/add-exercise-in-session.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'seance/creation',
     component: CreateSessionComponent
+  },
+  {
+    path: 'seance/creation/exercice/:number',
+    component: AddExerciseInSessionComponent
   },
   {
     path: '**',

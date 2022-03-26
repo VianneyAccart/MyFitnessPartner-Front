@@ -14,8 +14,8 @@
             <div class="row g-2">
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input formControlName="date" type="date" class="form-control" id="floatingInputGrid" placeholder="31/01/2022"
-                            value="">
+                        <input formControlName="date" type="date" class="form-control" id="floatingInputGrid"
+                            placeholder="31/01/2022" value="">
                         <label for="floatingInputGrid">Date de la séance</label>
                     </div>
                 </div>
@@ -34,58 +34,8 @@
                 </div>
             </div>
 
-            <button type="button" class="mt-3 mb-4" (click)="setSessionInitializationParametersInLocalStorage()">Ajouter un exercice</button>
+            <button type="button" class="mt-3 mb-4" (click)="setSessionInitializationParametersInLocalStorage()">Ajouter
+                un exercice</button>
         </form>
     </div>
 </div>
-<!-- <div formArrayName="exercises" *ngFor="let item of sessionForm.controls['exercises'].value; let i = index;">
-                <div [formGroupName]="i" class="d-flex flex-column pb-5">
-                    <h3 class="my-4">Exercice {{i+1}}</h3>
-                    <div class="form-floating mb-3">
-                        <select formControlName="muscularGroup" class="form-select" id="floatingSelect"
-                            aria-label="Floating label select example">
-                            <option *ngFor="let muscularGroup of muscularGroups" value="{{muscularGroup.id}}">
-                                {{muscularGroup.name}}</option>
-                        </select>
-                        <label for="floatingSelect">Groupe musculaire</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <select formControlName="name" class="form-select" id="floatingSelect"
-                            aria-label="Floating label select example">
-                            <option value="1">Développé couché à la barre</option>
-                            <option value="2">Développé couché incliné à la barre</option>
-                            <option value="3">Dips</option>
-                        </select>
-                        <label for="floatingSelect">Exercice</label>
-                    </div>
-
-                    <div formArrayName="series"
-                        *ngFor="let item of exerciseForm.controls['series'].value; let j = index;"
-                        class="row g-2 mb-3">
-                        <div class="serieCount col-2 d-flex align-items-center"><p>Série {{j+1}}</p></div>
-                        <div class="col-5">
-                            <div class="form-floating">
-                                <input type="number" min="1" class="form-control" value="" id="floatingInput"
-                                    placeholder="10">
-                                <label for="floatingInput">Répétitions</label>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating">
-                                <input type="number" min="0" step="0.25" class="form-control" id="floatingInput"
-                                    value="" placeholder="45">
-                                <label for="floatingInput">Charge (kg)</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" (click)="addSerie(i)">Ajouter une série à l'exercice {{i+1}}</button>
-
-                </div>
-                
-            </div>
-            <button (click)="showExercises()">Test</button>
-            
-        </form>
-    </div>
-</div> -->

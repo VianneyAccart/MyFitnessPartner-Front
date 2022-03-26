@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MuscularGroup } from 'src/app/shared/models/MuscularGroup.model';
 import { MuscularGroupService } from 'src/app/shared/services/muscular-group.service';
 
@@ -17,7 +18,8 @@ export class CreateSessionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private muscularGroupService: MuscularGroupService
+    private muscularGroupService: MuscularGroupService,
+    private router: Router
   ) {
     this.sessionForm = new FormGroup({});
     this.exerciseForm = new FormGroup({});
@@ -38,9 +40,13 @@ export class CreateSessionComponent implements OnInit {
   }
 
   setSessionInitializationParametersInLocalStorage() {
-    window.localStorage.setItem('sessionTitle', this.sessionForm.controls['title'].value);
-    window.localStorage.setItem('sessionDate', this.sessionForm.controls['date'].value);
-    window.localStorage.setItem('sessionFeeling', this.sessionForm.controls['feeling'].value);
+    let sessionInitialization = {
+      "title" : this.sessionForm.controls['title'].value,
+      "date" : this.sessionForm.controls['date'].value,
+      "feeling" : this.sessionForm.controls['feeling'].value
+    };
+    window.localStorage.setItem('sessionInitialization', JSON.stringify(sessionInitialization));
+    this.router.navigate(['/seance/creation/exercice/1']);
   }
 
   createExercise(): FormGroup {
