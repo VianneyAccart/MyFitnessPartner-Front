@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MuscularGroup } from 'src/app/shared/models/MuscularGroup.model';
 import { MuscularGroupService } from 'src/app/shared/services/muscular-group.service';
 
@@ -10,6 +11,7 @@ import { MuscularGroupService } from 'src/app/shared/services/muscular-group.ser
 })
 export class AddExerciseInSessionComponent implements OnInit {
   sessionInitilization: string | null;
+  exerciseNumber: string | undefined;
 
   exerciseForm: FormGroup;
   exercises: FormArray | undefined;
@@ -18,7 +20,9 @@ export class AddExerciseInSessionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private muscularGroupService: MuscularGroupService
+    private muscularGroupService: MuscularGroupService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.sessionInitilization = window.localStorage.getItem(
       'sessionInitialization'
@@ -33,6 +37,10 @@ export class AddExerciseInSessionComponent implements OnInit {
       .subscribe((response: MuscularGroup[]) => {
         this.muscularGroups = response;
       });
+
+    this.route.params.subscribe((param) => {
+      this.exerciseNumber = param['number'];
+    });
   }
 
   ngOnInit(): void {
@@ -53,5 +61,17 @@ export class AddExerciseInSessionComponent implements OnInit {
   addSerie(): void {
     this.series = this.exerciseForm?.get('series') as FormArray;
     this.series.push(this.createSerie());
+  }
+
+  setExerciseInLocalStorage() {
+    let savedExercise = {
+      "muscularGroupId" : this.exerciseForm.controls['muscularGroup'].value,
+      "name" : this.exerciseForm.controls['name'].value
+    };
+    window.localStorage.setItem('savedExercise' + this.exerciseNumber, JSON.stringify(savedExercise));
+    if (this.exerciseNumber) {
+      this.router.navigate([`/seance/creation/exercice/${parseInt(this.exerciseNumber) + 1}`]);
+      this.ngOnInit();
+    }
   }
 }

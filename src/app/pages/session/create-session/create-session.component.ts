@@ -34,7 +34,7 @@ export class CreateSessionComponent implements OnInit {
     this.sessionForm = this.formBuilder.group({
       title: [''],
       date: [''],
-      feeling: [''],
+      place: [''],
       exercises: this.formBuilder.array([this.createExercise()]),
     });
   }
@@ -43,7 +43,7 @@ export class CreateSessionComponent implements OnInit {
     let sessionInitialization = {
       "title" : this.sessionForm.controls['title'].value,
       "date" : this.sessionForm.controls['date'].value,
-      "feeling" : this.sessionForm.controls['feeling'].value
+      "place" : this.sessionForm.controls['place'].value
     };
     window.localStorage.setItem('sessionInitialization', JSON.stringify(sessionInitialization));
     this.router.navigate(['/seance/creation/exercice/1']);

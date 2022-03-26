@@ -15,7 +15,7 @@
 
             <div class="d-flex flex-column pb-5">
                 <div class="d-flex align-items-center mb-4">
-                    <h3 class="my-4 col-6">Exercice 1</h3>
+                    <h3 class="my-4 col-6">Exercice <span>{{exerciseNumber}}</span></h3>
                     <button type="button" (click)="addSerie()">Ajouter une série</button>
                 </div>
 
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <select formControlName="name" class="form-select" id="floatingSelect"
-                        aria-label="Floating label select example">
+                        aria-label="Floating label select example" value="">
                         <option value="1">Développé couché à la barre</option>
                         <option value="2">Développé couché incliné à la barre</option>
                         <option value="3">Dips</option>
@@ -60,10 +60,10 @@
 
                 <div class="row g-2 mt-1">
                     <div class="col-sm-6">
-                        <button>Ajouter un exercice</button>
+                        <button class="newExercise" (click)="setExerciseInLocalStorage()">Ajouter un exercice</button>
                     </div>
                     <div class="col-sm-6">
-                        <button>Terminer la séance</button>
+                        <button class="endSession">Terminer la séance</button>
                     </div>
                 </div>
 
