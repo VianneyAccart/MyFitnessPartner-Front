@@ -43,8 +43,8 @@
                     <label for="floatingSelect">Exercice</label>
                 </div>
 
-                <div formArrayName="series" *ngFor="let item of exerciseForm.controls['series'].value; let i = index;">
-                    <div [formGroup]="serieForm" class="row g-2 mb-3">
+                <div formArrayName="series" *ngFor="let item of exerciseFormGroups.controls; let i = index;">
+                    <div formGroupName="{{i}}" class="row g-2 mb-3">
                         <div class="serieCount col-2 d-flex align-items-center">
                             <p>Série {{i+1}}</p>
                         </div>
