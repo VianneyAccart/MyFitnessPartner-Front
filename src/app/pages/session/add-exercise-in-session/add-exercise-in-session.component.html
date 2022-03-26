@@ -43,7 +43,7 @@
                     <label for="floatingSelect">Exercice</label>
                 </div>
 
-                <div formArrayName="series" *ngFor="let item of exerciseFormGroups.controls; let i = index;">
+                <div formArrayName="series" *ngFor="let serie of seriesArray.controls; let i = index;">
                     <div formGroupName="{{i}}" class="row g-2 mb-3">
                         <div class="serieCount col-2 d-flex align-items-center">
                             <p>Série {{i+1}}</p>
@@ -55,12 +55,15 @@
                                 <label for="floatingInput">Répétitions</label>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-4">
                             <div class="form-floating">
                                 <input formControlName="weight" type="number" min="0" step="0.25" class="form-control"
                                     id="floatingInput" value="" placeholder="45">
-                                <label for="floatingInput">Charge (kg)</label>
+                                <label for="floatingInput">Charge</label>
                             </div>
+                        </div>
+                        <div class="col-1 d-flex justify-content-center align-items-center">
+                            <span (click)="deleteSerie(i)"><i class="bi bi-trash3"></i></span>
                         </div>
                     </div>
                 </div>

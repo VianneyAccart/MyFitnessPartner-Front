@@ -45,35 +45,32 @@ export class AddExerciseInSessionComponent implements OnInit {
     this.exerciseForm = this.formBuilder.group({
       name: [''],
       muscularGroup: [''],
-      series: this.formBuilder.array([this.createSerie()]),
+      series: this.formBuilder.array([]),
     });
   }
 
-  createSerie(): FormGroup {
-    return this.formBuilder.group({
+  get seriesArray() {
+    return this.exerciseForm.get('series') as FormArray;
+  }
+
+  addSerie(): void {
+    const serieForm = this.formBuilder.group({
       repetitions: [''],
       weight: [''],
     });
+    this.series = this.seriesArray;
+    this.series.push(serieForm);
   }
 
   deleteSerie(serieIndex: number) {
     this.series?.removeAt(serieIndex);
   }
 
-  addSerie(): void {
-    this.series = this.exerciseForm?.get('series') as FormArray;
-    this.series.push(this.createSerie());
-  }
-
-  get exerciseFormGroups() {
-    return this.exerciseForm.get('series') as FormArray;
-  }
-
   getValuesForEachSerie() {
     let savedExercise = {
       muscularGroupId: this.exerciseForm.controls['muscularGroup'].value,
       name: this.exerciseForm.controls['name'].value,
-      series: this.exerciseForm.controls['series'].value
+      series: this.exerciseForm.controls['series'].value,
     };
     console.log(savedExercise);
   }
@@ -82,7 +79,7 @@ export class AddExerciseInSessionComponent implements OnInit {
     let savedExercise = {
       muscularGroupId: this.exerciseForm.controls['muscularGroup'].value,
       name: this.exerciseForm.controls['name'].value,
-      series: this.exerciseForm.controls['series'].value
+      series: this.exerciseForm.controls['series'].value,
     };
     window.localStorage.setItem(
       'savedExercise' + this.exerciseNumber,
