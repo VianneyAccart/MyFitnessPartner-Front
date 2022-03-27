@@ -30,4 +30,8 @@ export class ExercisesService {
   public deleteExercise(id: number): Observable<any> {
     return this.http.delete(environment.apiUrl + 'exercise/' + id + '/delete');
   }
+
+  public getExercisesByMuscularGroupId(id: number): Observable<Exercise[]> {
+    return this.http.get<Exercise[]>(environment.apiUrl + 'muscular-group/' + id + '/exercises');
+  }
 }

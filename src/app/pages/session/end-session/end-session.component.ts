@@ -3,11 +3,12 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-session',
-  templateUrl: './create-session.component.html',
-  styleUrls: ['./create-session.component.sass'],
+  selector: 'app-end-session',
+  templateUrl: './end-session.component.html',
+  styleUrls: ['./end-session.component.sass']
 })
-export class CreateSessionComponent implements OnInit {
+export class EndSessionComponent implements OnInit {
+
   sessionForm: FormGroup;
   series: FormArray | undefined;
 

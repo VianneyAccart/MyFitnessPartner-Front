@@ -3,15 +3,21 @@
     <div class="container content col-12 col-md-6 col-lg-5">
         <div class="row mb-4 mt-5">
             <div class="d-flex justify-content-around align-items-center mb-5">
-                <div class="step current"><p>1</p></div>
-                <div><hr></div>
+                <div class="step current">
+                    <p>1</p>
+                </div>
+                <div>
+                    <hr>
+                </div>
                 <div class="step">2</div>
-                <div><hr></div>
+                <div>
+                    <hr>
+                </div>
                 <div class="step">3</div>
             </div>
             <h1>A propos de ta séance</h1>
         </div>
-        <form [formGroup]="sessionForm">
+        <form (ngSubmit)="initializationForm.valid && setSessionInitializationParametersInLocalStorage()"[formGroup]="sessionForm" #initializationForm="ngForm">
             <div class="form-floating mb-3">
                 <input type="text" formControlName="title" class="form-control col-12 my-1" id="floatingInput"
                     placeholder="Séance hebdomadaire avec John">
@@ -21,17 +27,13 @@
             <div class="row g-2">
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input required formControlName="date" type="date" class="form-control" id="floatingInputGrid"
+                        <input [ngClass]="{'is-invalid' : (initializationForm.submitted && sessionForm.get('date')?.errors)}" required formControlName="date" type="date" class="form-control" id="floatingInputGrid"
                             placeholder="31/01/2022" value="">
-                        <label for="floatingInputGrid">Date de la séance</label>
+                        <label for="floatingInputGrid">Date de la séance <span class="inputRequired">*</span></label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="form-floating">
-                        <input formControlName="place" type="text" class="form-control" id="floatingInputGrid"
-                            placeholder="Basic-Fit" value="">
-                        <label for="floatingInputGrid">Lieu</label>
-                    </div>
+                    <button type="submit">Ajouter un exercice</button>
                 </div>
                 <!-- <div class="col-sm-6">
                     <div class="form-floating">
@@ -47,9 +49,6 @@
                     </div>
                 </div> -->
             </div>
-
-            <button type="button" class="mt-3 mb-4" (click)="setSessionInitializationParametersInLocalStorage()">Ajouter
-                un exercice</button>
         </form>
     </div>
 </div>

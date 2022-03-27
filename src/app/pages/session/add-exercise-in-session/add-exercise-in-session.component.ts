@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Exercise } from 'src/app/shared/models/Exercise.model';
 import { MuscularGroup } from 'src/app/shared/models/MuscularGroup.model';
+import { ExercisesService } from 'src/app/shared/services/exercises.service';
 import { MuscularGroupService } from 'src/app/shared/services/muscular-group.service';
 
 @Component({
@@ -15,13 +17,17 @@ export class AddExerciseInSessionComponent implements OnInit {
   series: FormArray | undefined;
   muscularGroups: MuscularGroup[] | undefined;
   exerciseForm: FormGroup;
+  exercisesByMuscularGroup: Exercise[] | undefined;
+  isExerciseSelected: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private muscularGroupService: MuscularGroupService,
+    private exerciseService: ExercisesService,
     private router: Router,
     private route: ActivatedRoute
   ) {
+    this.isExerciseSelected = false;
     this.sessionInitilization = window.localStorage.getItem(
       'sessionInitialization'
     );
@@ -49,6 +55,20 @@ export class AddExerciseInSessionComponent implements OnInit {
     });
   }
 
+  onExerciseSelection(event: any) {
+    if(event.target.value) this.isExerciseSelected = true;
+  }
+
+  onMuscularGroupSelection(event: any): void {
+      this.getExercisesByMuscularGroupId(event.target.value);
+  }
+
+  getExercisesByMuscularGroupId(id: number) {
+    this.exerciseService.getExercisesByMuscularGroupId(id).subscribe((response) => {
+      this.exercisesByMuscularGroup = response;
+    })
+  }
+
   get seriesArray() {
     return this.exerciseForm.get('series') as FormArray;
   }
@@ -66,23 +86,24 @@ export class AddExerciseInSessionComponent implements OnInit {
     this.series?.removeAt(serieIndex);
   }
 
-  getValuesForEachSerie() {
+  endSession() {
     let savedExercise = {
       muscularGroupId: this.exerciseForm.controls['muscularGroup'].value,
       name: this.exerciseForm.controls['name'].value,
       series: this.exerciseForm.controls['series'].value,
     };
     console.log(savedExercise);
+    this.router.navigate(['/seance/creation/finalisation']);
   }
 
   setExerciseInLocalStorage() {
     let savedExercise = {
       muscularGroupId: this.exerciseForm.controls['muscularGroup'].value,
-      name: this.exerciseForm.controls['name'].value,
+      nameId: this.exerciseForm.controls['name'].value,
       series: this.exerciseForm.controls['series'].value,
     };
     window.localStorage.setItem(
-      'savedExercise' + this.exerciseNumber,
+      'exercise ' + this.exerciseNumber,
       JSON.stringify(savedExercise)
     );
     if (this.exerciseNumber) {
@@ -90,6 +111,8 @@ export class AddExerciseInSessionComponent implements OnInit {
         `/seance/creation/exercice/${parseInt(this.exerciseNumber) + 1}`,
       ]);
       this.ngOnInit();
+      this.isExerciseSelected = false;
+      this.exercisesByMuscularGroup = [];
     }
   }
 }

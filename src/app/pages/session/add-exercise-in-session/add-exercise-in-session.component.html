@@ -20,63 +20,63 @@
         <form [formGroup]="exerciseForm">
 
             <div class="d-flex flex-column pb-5">
-                <div class="d-flex align-items-center mb-4">
-                    <h3 class="my-4 col-6">Exercice <span>{{exerciseNumber}}</span></h3>
-                    <button type="button" (click)="addSerie()">Ajouter une série</button>
-                </div>
+                <h3 class="my-4 col-6">Exercice <span>{{exerciseNumber}}</span></h3>
 
                 <div class="form-floating mb-3">
-                    <select formControlName="muscularGroup" class="form-select" id="floatingSelect"
-                        aria-label="Floating label select example">
-                        <option *ngFor="let muscularGroup of muscularGroups" value="{{muscularGroup.id}}">
+                    <select (change)="onMuscularGroupSelection($event)" formControlName="muscularGroup"
+                        class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option *ngFor="let muscularGroup of muscularGroups" [value]="muscularGroup.id">
                             {{muscularGroup.name}}</option>
                     </select>
                     <label for="floatingSelect">Groupe musculaire</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <select formControlName="name" class="form-select" id="floatingSelect"
-                        aria-label="Floating label select example" value="">
-                        <option value="1">Développé couché à la barre</option>
-                        <option value="2">Développé couché incliné à la barre</option>
-                        <option value="3">Dips</option>
+                <div *ngIf="exercisesByMuscularGroup?.length" class="form-floating mb-3">
+                    <select (change)="onExerciseSelection($event)" formControlName="name" class="form-select"
+                        id="floatingSelect" aria-label="Floating label select example" value="">
+                        <option *ngFor="let exercise of exercisesByMuscularGroup" [value]="exercise.id">
+                            {{exercise.name}}</option>
                     </select>
                     <label for="floatingSelect">Exercice</label>
                 </div>
 
-                <div formArrayName="series" *ngFor="let serie of seriesArray.controls; let i = index;">
-                    <div formGroupName="{{i}}" class="row g-2 mb-3">
-                        <div class="serieCount col-2 d-flex align-items-center">
-                            <p>Série {{i+1}}</p>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-floating">
-                                <input formControlName="repetitions" type="number" min="1" class="form-control" value=""
-                                    id="floatingInput" placeholder="10">
-                                <label for="floatingInput">Répétitions</label>
+                <div *ngIf="isExerciseSelected">
+                    <div formArrayName="series" *ngFor="let serie of seriesArray.controls; let i = index;">
+                        <div formGroupName="{{i}}" class="row g-2 mb-3">
+                            <div class="serieCount col-2 d-flex align-items-center">
+                                <p>Série {{i+1}}</p>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-floating">
+                                    <input formControlName="repetitions" type="number" min="1" class="form-control"
+                                        value="" id="floatingInput" placeholder="10">
+                                    <label for="floatingInput">Répétitions</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <input formControlName="weight" type="number" min="0" step="0.25"
+                                        class="form-control" id="floatingInput" value="" placeholder="45">
+                                    <label for="floatingInput">Charge</label>
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex justify-content-center align-items-center">
+                                <span (click)="deleteSerie(i)"><i class="bi bi-trash3"></i></span>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="form-floating">
-                                <input formControlName="weight" type="number" min="0" step="0.25" class="form-control"
-                                    id="floatingInput" value="" placeholder="45">
-                                <label for="floatingInput">Charge</label>
-                            </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center" (click)="addSerie()"><i class="bi bi-plus-circle"></i>
+                    </div>
+
+                    <div class="row g-2 mt-1">
+                        <div class="col-sm-6">
+                            <button (click)="setExerciseInLocalStorage()">Ajouter un exercice</button>
                         </div>
-                        <div class="col-1 d-flex justify-content-center align-items-center">
-                            <span (click)="deleteSerie(i)"><i class="bi bi-trash3"></i></span>
+                        <div class="col-sm-6">
+                            <button class="endSession" (click)="endSession()">Finaliser la séance</button>
                         </div>
                     </div>
                 </div>
-
-                <div class="row g-2 mt-1">
-                    <div class="col-sm-6">
-                        <button class="newExercise" (click)="setExerciseInLocalStorage()">Ajouter un exercice</button>
-                    </div>
-                    <div class="col-sm-6">
-                        <button class="endSession" (click)="getValuesForEachSerie()">Terminer la séance</button>
-                    </div>
-                </div>
-
             </div>
         </form>
     </div>
