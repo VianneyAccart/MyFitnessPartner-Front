@@ -12,8 +12,8 @@ export class MuscularGroupsComponent implements OnInit {
   isSortedByAscendingName: boolean;
   alertIsShown: boolean;
 
-  constructor(private muscularGroupServices: MuscularGroupService) {
-    this.muscularGroupServices
+  constructor(private muscularGroupService: MuscularGroupService) {
+    this.muscularGroupService
       .getMuscularGroups()
       .subscribe((response: MuscularGroup[]) => {
         this.muscularGroups = response;

@@ -1,0 +1,51 @@
+<div class="container-fluid p-0 d-flex justify-content-between">
+    <app-menu class="sideMenu"></app-menu>
+    <div class="container content col-12 col-md-6 col-lg-5">
+        <div class="row mb-4 mt-5">
+            <div class="d-flex justify-content-around align-items-center mb-5">
+                <div class="step">
+                    <p>1</p>
+                </div>
+                <div>
+                    <hr>
+                </div>
+                <div class="step">2</div>
+                <div>
+                    <hr>
+                </div>
+                <div class="step current">3</div>
+            </div>
+            <h1>Finalisation</h1>
+        </div>
+        <form (ngSubmit)="initializationForm.valid && setSessionInitializationParametersInLocalStorage()"[formGroup]="sessionForm" #initializationForm="ngForm">
+            <div class="form-floating mb-3">
+                <select formControlName="feeling" class="form-select" id="floatingSelect"
+                    aria-label="Floating label select example">
+                    <option value="1">Très mauvais</option>
+                    <option value="2">Mauvais</option>
+                    <option value="3">Moyen</option>
+                    <option value="4">Bon</option>
+                    <option value="5">Très bon</option>
+                </select>
+                <label for="floatingSelectGrid">Ton ressenti</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="title" class="form-control col-12 my-1" id="floatingInput"
+                    placeholder="Séance hebdomadaire avec John">
+                <label for="floatingInput">Note</label>
+            </div>
+
+            <div class="row g-2">
+
+                <div class="col-sm-6">
+                    <button class="endSession" type="submit">Annuler la séance</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit">Terminer la séance</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
