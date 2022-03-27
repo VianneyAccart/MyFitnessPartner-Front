@@ -11,11 +11,13 @@ export class MenuComponent {
 exercisesOptionsAreShown: boolean;
 muscularGroupOptionsAreShown: boolean;
 accountOptionsAreShown: boolean;
+sessionOptionsAreShown: boolean;
 
 constructor() {
   this.exercisesOptionsAreShown = false;
   this.muscularGroupOptionsAreShown = false
   this.accountOptionsAreShown = false;
+  this.sessionOptionsAreShown = false;
 }
 
 sendCloseMobileMenuInstruction() {
@@ -24,6 +26,10 @@ sendCloseMobileMenuInstruction() {
 
 showExercisesOptions() {
   this.exercisesOptionsAreShown = !this.exercisesOptionsAreShown;
+}
+
+showSessionOptions() {
+  this.sessionOptionsAreShown = !this.sessionOptionsAreShown;
 }
 
 showMuscularGroupOptions() {

@@ -3,41 +3,48 @@
     <div (click)="sendCloseMobileMenuInstruction()" routerLink="/" class="item d-flex align-items-center"><a><i
                 class="bi bi-house"></i>Tableau de bord</a></div>
 
+    <!-- Session -->
+    <div (click)="showSessionOptions()" class="item d-flex align-items-center"><a><i class="bi bi-play-circle"></i>Séances<i
+                class="bi bi-chevron-down"></i></a></div>
+    <div *ngIf="sessionOptionsAreShown">
+        <div (click)="sendCloseMobileMenuInstruction()" routerLink="/" class="item d-flex align-items-center"><a
+                class="subMenu"><i class="bi bi-list-ul"></i>Tout voir</a></div>
+        <div (click)="sendCloseMobileMenuInstruction()" routerLink="/seance/creation"
+            class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-plus-circle"></i>Ajouter</a></div>
+    </div>
+
     <!-- Exercises -->
     <div (click)="showExercisesOptions()" class="item d-flex align-items-center"><a><i
                 class="bi bi-dribbble"></i>Exercices<i class="bi bi-chevron-down"></i></a></div>
-
-    <div *ngIf="exercisesOptionsAreShown" (click)="sendCloseMobileMenuInstruction()" routerLink="/"
-        class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-list-ul"></i>Tout voir</a></div>
-
-    <div *ngIf="exercisesOptionsAreShown" (click)="sendCloseMobileMenuInstruction()" routerLink="/exercice/creation"
-        class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-plus-circle"></i>Ajouter</a></div>
+    <div *ngIf="exercisesOptionsAreShown">
+        <div (click)="sendCloseMobileMenuInstruction()" routerLink="/" class="item d-flex align-items-center"><a
+                class="subMenu"><i class="bi bi-list-ul"></i>Tout voir</a></div>
+        <div (click)="sendCloseMobileMenuInstruction()" routerLink="/exercice/creation"
+            class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-plus-circle"></i>Ajouter</a></div>
+    </div>
 
     <!-- Muscular groups -->
     <div (click)="showMuscularGroupOptions()" class="item d-flex align-items-center">
         <a><i class="bi bi-wrench-adjustable-circle"></i>Groupes musculaires<i class="bi bi-chevron-down"></i></a>
     </div>
-
-    <div *ngIf="muscularGroupOptionsAreShown" (click)="sendCloseMobileMenuInstruction()"
-        routerLink="/groupes-musculaires" class="item d-flex align-items-center"><a class="subMenu"><i
-                class="bi bi-list-ul"></i>Tout voir</a></div>
-
-    <div *ngIf="muscularGroupOptionsAreShown" (click)="sendCloseMobileMenuInstruction()"
-        routerLink="/groupe-musculaire/creation" class="item d-flex align-items-center"><a class="subMenu"><i
-                class="bi bi-plus-circle"></i>Ajouter</a></div>
+    <div *ngIf="muscularGroupOptionsAreShown">
+        <div (click)="sendCloseMobileMenuInstruction()" routerLink="/groupes-musculaires"
+            class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-list-ul"></i>Tout voir</a></div>
+        <div (click)="sendCloseMobileMenuInstruction()" routerLink="/groupe-musculaire/creation"
+            class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-plus-circle"></i>Ajouter</a></div>
+    </div>
 
     <!-- Account -->
     <div (click)="showAccountOptions()" class="item d-flex align-items-center">
         <a><i class="bi bi-person-circle"></i>Mon compte<i class="bi bi-chevron-down"></i></a>
     </div>
-
-    <div *ngIf="accountOptionsAreShown" (click)="sendCloseMobileMenuInstruction()"
-        class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-info-circle"></i>Mes informations</a>
-    </div>
-
-    <div *ngIf="accountOptionsAreShown" (click)="sendCloseMobileMenuInstruction()"
-        class="item d-flex align-items-center"><a class="subMenu"><i class="bi bi-arrow-repeat"></i>Modifier mon mot de
-            passe</a>
+    <div *ngIf="accountOptionsAreShown">
+        <div (click)="sendCloseMobileMenuInstruction()" class="item d-flex align-items-center"><a class="subMenu"><i
+                    class="bi bi-info-circle"></i>Mes informations</a>
+        </div>
+        <div (click)="sendCloseMobileMenuInstruction()" class="item d-flex align-items-center"><a class="subMenu"><i
+                    class="bi bi-arrow-repeat"></i>Modifier mon mot de passe</a>
+        </div>
     </div>
 
     <!-- Log out -->
