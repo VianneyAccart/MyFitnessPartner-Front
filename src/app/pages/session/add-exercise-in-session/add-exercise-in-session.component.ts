@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Exercise } from 'src/app/shared/models/Exercise.model';
 import { MuscularGroup } from 'src/app/shared/models/MuscularGroup.model';
@@ -17,6 +17,7 @@ export class AddExerciseInSessionComponent implements OnInit {
   series: FormArray | undefined;
   muscularGroups: MuscularGroup[] | undefined;
   exerciseForm: FormGroup;
+  serieForm: FormGroup;
   exercisesByMuscularGroup: Exercise[] | undefined;
   isExerciseSelected: boolean;
 
@@ -33,7 +34,6 @@ export class AddExerciseInSessionComponent implements OnInit {
     );
     if (this.sessionInitilization)
       this.sessionInitilization = JSON.parse(this.sessionInitilization);
-    console.log(this.sessionInitilization);
 
     this.exerciseForm = new FormGroup({});
     this.muscularGroupService
@@ -45,13 +45,18 @@ export class AddExerciseInSessionComponent implements OnInit {
     this.route.params.subscribe((param) => {
       this.exerciseNumber = param['number'];
     });
+
+    this.serieForm = this.formBuilder.group({
+      repetitions: ['', [Validators.required, Validators.min(1)]],
+      weight: ['', [Validators.required, Validators.min(0)]],
+    });
   }
 
   ngOnInit() {
     this.exerciseForm = this.formBuilder.group({
-      name: [''],
-      muscularGroup: [''],
-      series: this.formBuilder.array([]),
+      name: ['', Validators.required],
+      muscularGroup: ['', Validators.required],
+      series: this.formBuilder.array([this.serieForm], Validators.required),
     });
   }
 
@@ -75,8 +80,8 @@ export class AddExerciseInSessionComponent implements OnInit {
 
   addSerie(): void {
     const serieForm = this.formBuilder.group({
-      repetitions: [''],
-      weight: [''],
+      repetitions: ['', [Validators.required, Validators.min(1)]],
+      weight: ['', [Validators.required, Validators.min(0)]],
     });
     this.series = this.seriesArray;
     this.series.push(serieForm);
@@ -92,7 +97,10 @@ export class AddExerciseInSessionComponent implements OnInit {
       name: this.exerciseForm.controls['name'].value,
       series: this.exerciseForm.controls['series'].value,
     };
-    console.log(savedExercise);
+    window.localStorage.setItem(
+      'exercise ' + this.exerciseNumber,
+      JSON.stringify(savedExercise)
+    );
     this.router.navigate(['/seance/creation/finalisation']);
   }
 
@@ -110,9 +118,20 @@ export class AddExerciseInSessionComponent implements OnInit {
       this.router.navigate([
         `/seance/creation/exercice/${parseInt(this.exerciseNumber) + 1}`,
       ]);
-      this.ngOnInit();
+      this.exerciseForm.reset()
       this.isExerciseSelected = false;
       this.exercisesByMuscularGroup = [];
+      this.ngOnInit();
     }
+  }
+
+  cancelSession() {
+    if (window.localStorage.getItem('sessionInitialization'))
+      window.localStorage.removeItem('sessionInitialization');
+
+    Object.keys(localStorage).forEach(function(key){
+      if (key.includes('exercise')) localStorage.removeItem(key);
+    });
+    this.router.navigate(['/exercices']);
   }
 }

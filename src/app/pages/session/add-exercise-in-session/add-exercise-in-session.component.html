@@ -17,22 +17,22 @@
             </div>
             <h1>Ajout d'un exercice</h1>
         </div>
-        <form [formGroup]="exerciseForm">
+        <form (ngSubmit)="createExerciseForm.valid" [formGroup]="exerciseForm" #createExerciseForm="ngForm">
 
-            <div class="d-flex flex-column pb-5">
+            <div class="d-flex flex-column pb-2">
                 <h3 class="my-4 col-6">Exercice <span>{{exerciseNumber}}</span></h3>
 
                 <div class="form-floating mb-3">
-                    <select (change)="onMuscularGroupSelection($event)" formControlName="muscularGroup"
-                        class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <select required (change)="onMuscularGroupSelection($event)" formControlName="muscularGroup"
+                        class="form-select" id="floatingSelect" aria-label="Groupe musculaire">
                         <option *ngFor="let muscularGroup of muscularGroups" [value]="muscularGroup.id">
                             {{muscularGroup.name}}</option>
                     </select>
                     <label for="floatingSelect">Groupe musculaire</label>
                 </div>
                 <div *ngIf="exercisesByMuscularGroup?.length" class="form-floating mb-3">
-                    <select (change)="onExerciseSelection($event)" formControlName="name" class="form-select"
-                        id="floatingSelect" aria-label="Floating label select example" value="">
+                    <select required (change)="onExerciseSelection($event)" formControlName="name" class="form-select"
+                        id="floatingSelect" aria-label="Exercice" value="">
                         <option *ngFor="let exercise of exercisesByMuscularGroup" [value]="exercise.id">
                             {{exercise.name}}</option>
                     </select>
@@ -47,14 +47,14 @@
                             </div>
                             <div class="col-5">
                                 <div class="form-floating">
-                                    <input formControlName="repetitions" type="number" min="1" class="form-control"
-                                        value="" id="floatingInput" placeholder="10">
+                                    <input required formControlName="repetitions" type="number" min="1"
+                                        class="form-control" value="" id="floatingInput" placeholder="10">
                                     <label for="floatingInput">Répétitions</label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-floating">
-                                    <input formControlName="weight" type="number" min="0" step="0.25"
+                                    <input required formControlName="weight" type="number" min="0" step="0.125"
                                         class="form-control" id="floatingInput" value="" placeholder="45">
                                     <label for="floatingInput">Charge</label>
                                 </div>
@@ -70,14 +70,41 @@
 
                     <div class="row g-2 mt-1">
                         <div class="col-sm-6">
-                            <button (click)="setExerciseInLocalStorage()">Ajouter un exercice</button>
+                            <button [ngClass]="({'preventSubmitSetExercice' : createExerciseForm.invalid})"
+                                [disabled]="createExerciseForm.invalid" type="submit"
+                                (click)="setExerciseInLocalStorage()">Ajouter un exercice</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="endSession" (click)="endSession()">Finaliser la séance</button>
+                            <button [ngClass]="({'preventSubmitEndSession' : createExerciseForm.invalid})"
+                                [disabled]="createExerciseForm.invalid" type="submit" class="endSession"
+                                (click)="endSession()">Finaliser la séance</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <div>
+                <button data-bs-toggle="modal" class="cancelSession" data-bs-target="#staticBackdrop" type="submit">Annuler la séance</button>
+            </div>
         </form>
+    </div>
+</div>
+
+<!-- Cancel Session Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirmation d'annulation</h5>
+                <div type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></div>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment annuler la séance en cours ? Toutes les données seront définitivement perdues.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel yes" data-bs-dismiss="modal" (click)="cancelSession()">Oui</button>
+                <button type="button" class="cancel" data-bs-dismiss="modal">Non</button>
+            </div>
+        </div>
     </div>
 </div>

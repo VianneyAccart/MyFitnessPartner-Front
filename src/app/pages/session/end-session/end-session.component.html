@@ -17,7 +17,7 @@
             </div>
             <h1>Finalisation</h1>
         </div>
-        <form (ngSubmit)="initializationForm.valid && setSessionInitializationParametersInLocalStorage()"[formGroup]="sessionForm" #initializationForm="ngForm">
+        <form [formGroup]="sessionForm">
             <div class="form-floating mb-3">
                 <select formControlName="feeling" class="form-select" id="floatingSelect"
                     aria-label="Floating label select example">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" formControlName="title" class="form-control col-12 my-1" id="floatingInput"
+                <input type="text" formControlName="note" class="form-control col-12 my-1" id="floatingInput"
                     placeholder="Séance hebdomadaire avec John">
                 <label for="floatingInput">Note</label>
             </div>
@@ -39,7 +39,8 @@
             <div class="row g-2">
 
                 <div class="col-sm-6">
-                    <button class="endSession" type="submit">Annuler la séance</button>
+                    <button data-bs-toggle="modal" class="cancelSession" data-bs-target="#staticBackdrop"
+                        type="submit">Annuler la séance</button>
                 </div>
                 <div class="col-sm-6">
                     <button type="submit">Terminer la séance</button>
@@ -47,5 +48,25 @@
 
             </div>
         </form>
+    </div>
+</div>
+
+<!-- Cancel Session Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirmation d'annulation</h5>
+                <div type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></div>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment annuler la séance en cours ? Toutes les données seront définitivement perdues.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cancel yes" data-bs-dismiss="modal" (click)="cancelSession()">Oui</button>
+                <button type="button" class="cancel" data-bs-dismiss="modal">Non</button>
+            </div>
+        </div>
     </div>
 </div>
