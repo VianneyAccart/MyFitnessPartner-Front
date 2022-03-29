@@ -1,103 +1,103 @@
 import { SavedExercise } from './SavedExercise.model';
 
 export class CreateSession {
-  private _date: Date;
-  private _feeling: string;
-  private _exercises: SavedExercise[];
-  private _title: string | undefined;
-  private _note: string | undefined;
+  private date: string;
+  private feelingId: string;
+  private exercises: SavedExercise[];
+  private name: string | undefined;
+  private note: string | undefined;
 
   constructor(
-    date: Date,
-    feeling: string,
+    date: string,
+    feelingId: string,
     exercises: SavedExercise[],
-    title?: string,
+    name?: string,
     note?: string
   ) {
-    this._date = date;
-    this._feeling = feeling;
-    this._exercises = exercises;
-    this._title = title;
-    this._note = note;
+    this.date = date;
+    this.feelingId = feelingId;
+    this.exercises = exercises;
+    this.name = name;
+    this.note = note;
   }
 
   /**
-   * Getter date
-   * @return {Date}
-   */
-  public get date(): Date {
-    return this._date;
-  }
-
-  /**
-   * Setter date
-   * @param {Date} value
-   */
-  public set date(value: Date) {
-    this._date = value;
-  }
-
-  /**
-   * Getter feeling
+   * Getter $date
    * @return {string}
    */
-  public get feeling(): string {
-    return this._feeling;
+  public get $date(): string {
+    return this.date;
   }
 
   /**
-   * Setter feeling
-   * @param {string} value
+   * Getter $feelingId
+   * @return {string}
    */
-  public set feeling(value: string) {
-    this._feeling = value;
+  public get $feelingId(): string {
+    return this.feelingId;
   }
 
   /**
-   * Getter exercises
+   * Getter $exercises
    * @return {SavedExercise[]}
    */
-  public get exercises(): SavedExercise[] {
-    return this._exercises;
+  public get $exercises(): SavedExercise[] {
+    return this.exercises;
   }
 
   /**
-   * Setter exercises
+   * Getter $name
+   * @return {string }
+   */
+  public get $name(): string | undefined {
+    return this.name;
+  }
+
+  /**
+   * Getter $note
+   * @return {string }
+   */
+  public get $note(): string | undefined {
+    return this.note;
+  }
+
+  /**
+   * Setter $date
+   * @param {string} value
+   */
+  public set $date(value: string) {
+    this.date = value;
+  }
+
+  /**
+   * Setter $feelingId
+   * @param {string} value
+   */
+  public set $feelingId(value: string) {
+    this.feelingId = value;
+  }
+
+  /**
+   * Setter $exercises
    * @param {SavedExercise[]} value
    */
-  public set exercises(value: SavedExercise[]) {
-    this._exercises = value;
+  public set $exercises(value: SavedExercise[]) {
+    this.exercises = value;
   }
 
   /**
-   * Getter title
-   * @return {string }
-   */
-  public get title(): string | undefined {
-    return this._title;
-  }
-
-  /**
-   * Setter title
+   * Setter $name
    * @param {string } value
    */
-  public set title(value: string | undefined) {
-    this._title = value;
+  public set $name(value: string | undefined) {
+    this.name = value;
   }
 
   /**
-   * Getter note
-   * @return {string }
-   */
-  public get note(): string | undefined {
-    return this._note;
-  }
-
-  /**
-   * Setter note
+   * Setter $note
    * @param {string } value
    */
-  public set note(value: string | undefined) {
-    this._note = value;
+  public set $note(value: string | undefined) {
+    this.note = value;
   }
 }

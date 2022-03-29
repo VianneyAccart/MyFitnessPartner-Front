@@ -1,10 +1,10 @@
 export class SessionInitialization {
   private _date: Date;
-  private _title: string | undefined;
+  private _name: string | undefined;
 
-  constructor(date: Date, title?: string) {
+  constructor(date: Date, name?: string) {
     this._date = date;
-    this._title = title;
+    this._name = name;
   }
 
   /**
@@ -27,15 +27,15 @@ export class SessionInitialization {
    * Getter title
    * @return {string }
    */
-  public get title(): string | undefined {
-    return this._title;
+  public get name(): string | undefined {
+    return this._name;
   }
 
   /**
    * Setter title
    * @param {string } value
    */
-  public set title(value: string | undefined) {
-    this._title = value;
+  public set name(value: string | undefined) {
+    this._name = value;
   }
 }

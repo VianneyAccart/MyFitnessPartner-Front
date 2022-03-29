@@ -24,7 +24,7 @@ export class CreateSessionComponent implements OnInit {
 
   setSessionInitializationParametersInLocalStorage() {
     let sessionInitialization = {
-      title: this.sessionForm.controls['title'].value,
+      name: this.sessionForm.controls['title'].value,
       date: this.sessionForm.controls['date'].value,
     };
     window.localStorage.setItem(
