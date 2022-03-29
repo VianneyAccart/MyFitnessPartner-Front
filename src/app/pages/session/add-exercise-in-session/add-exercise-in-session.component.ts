@@ -94,7 +94,7 @@ export class AddExerciseInSessionComponent implements OnInit {
   endSession() {
     let savedExercise = {
       muscularGroupId: this.exerciseForm.controls['muscularGroup'].value,
-      name: this.exerciseForm.controls['name'].value,
+      exerciseId: this.exerciseForm.controls['name'].value,
       series: this.exerciseForm.controls['series'].value,
     };
     window.localStorage.setItem(
@@ -107,7 +107,7 @@ export class AddExerciseInSessionComponent implements OnInit {
   setExerciseInLocalStorage() {
     let savedExercise = {
       muscularGroupId: this.exerciseForm.controls['muscularGroup'].value,
-      nameId: this.exerciseForm.controls['name'].value,
+      exerciseId: this.exerciseForm.controls['name'].value,
       series: this.exerciseForm.controls['series'].value,
     };
     window.localStorage.setItem(

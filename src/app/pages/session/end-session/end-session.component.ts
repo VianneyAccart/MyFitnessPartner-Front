@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreateSession } from 'src/app/shared/models/CreateSession.model';
 import { SavedExercise } from 'src/app/shared/models/SavedExercise.model';
 import { SessionInitialization } from 'src/app/shared/models/SessionInitialization.model';
+import { SessionService } from 'src/app/shared/services/session.service';
 
 @Component({
   selector: 'app-end-session',
@@ -13,10 +15,12 @@ export class EndSessionComponent implements OnInit {
   sessionForm: FormGroup;
   sessionInitialization: SessionInitialization | undefined;
   exercises: SavedExercise[];
+  sessionDate: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private sessionService: SessionService) {
     this.sessionForm = new FormGroup({});
     this.exercises = [];
+    this.sessionDate = '';
   }
 
   ngOnInit(): void {
@@ -47,20 +51,23 @@ export class EndSessionComponent implements OnInit {
   }
 
   saveSession() {
-    const session = new FormData();
-    if (this.sessionInitialization?.title) {
-      session.append('title', this.sessionInitialization.title);
+    if (this.sessionInitialization) {
+      this.sessionDate = this.sessionInitialization.date.toString();
     }
-    if (this.sessionForm.controls['note'].value !== '') {
-      session.append('note', this.sessionForm.controls['note'].value);
-    }
-    if (this.sessionInitialization?.date) {
-      session.append('date', this.sessionInitialization.date.toString());
-    }
-    session.append('feeling', this.sessionForm.controls['feeling'].value);
-    this.exercises.forEach((exercise) => {
-      session.append('exercise', JSON.stringify(exercise));
+
+    const datasToSend = new CreateSession(
+      this.sessionDate,
+      this.sessionForm.controls['feeling'].value,
+      this.exercises,
+      this.sessionInitialization?.name, 
+      this.sessionForm.controls['note'].value)
+
+    this.sessionService.createSession(datasToSend).subscribe((response) => {
+      console.log(response);
+    },
+    (error) => {
+      if (error.status == 200) this.cancelSession();
+      // TODO : implement error case and banners
     });
-    // TODO : implement save method
   }
 }
